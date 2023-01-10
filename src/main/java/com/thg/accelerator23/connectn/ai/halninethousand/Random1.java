@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Random;
 
 
-public class random1 extends Player {
-  public random1(Counter counter) {
+public class Random1 extends Player {
+  public Random1(Counter counter) {
     //TODO: fill in your name here
-    super(counter, random1.class.getName());
+    super(counter, Random1.class.getName());
   }
   int getMinVacantY(int x, Board board){
     for (int i = board.getConfig().getHeight() - 1; i >= 0; --i) {
@@ -34,7 +34,7 @@ public class random1 extends Player {
         notFull.add(i);
       }
     }
-    System.out.println("notFull :" + notFull);
+    //System.out.println("notFull :" + notFull);
 
     Random rand = new Random();
     return notFull.get(rand.nextInt(notFull.size()));
