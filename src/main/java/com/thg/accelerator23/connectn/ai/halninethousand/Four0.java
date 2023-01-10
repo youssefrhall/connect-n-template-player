@@ -5,10 +5,10 @@ import com.thehutgroup.accelerator.connectn.player.Counter;
 import com.thehutgroup.accelerator.connectn.player.Player;
 
 
-public class halNineThousandConnector extends Player {
-  public halNineThousandConnector(Counter counter) {
+public class Four0 extends Player {
+  public Four0(Counter counter) {
     //TODO: fill in your name here
-    super(counter, halNineThousandConnector.class.getName());
+    super(counter, Four0.class.getName());
   }
 
   @Override
