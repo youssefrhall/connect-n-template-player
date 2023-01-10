@@ -3,17 +3,15 @@ package com.thg.accelerator23.connectn.ai.halninethousand;
 import com.thehutgroup.accelerator.connectn.player.Board;
 import com.thehutgroup.accelerator.connectn.player.Counter;
 import com.thehutgroup.accelerator.connectn.player.Player;
-import com.thehutgroup.accelerator.connectn.player.Position;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 
-public class randomNotFull2 extends Player {
-  public randomNotFull2(Counter counter) {
+public class RandomNotFull2 extends Player {
+  public RandomNotFull2(Counter counter) {
     //TODO: fill in your name here
-    super(counter, randomNotFull2.class.getName());
+    super(counter, RandomNotFull2.class.getName());
   }
 
   @Override

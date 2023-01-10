@@ -6,7 +6,7 @@ import com.thehutgroup.accelerator.connectn.player.Position;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CheckFullColumns {
+class CheckFullColumns {
     private final Board board;
     public CheckFullColumns(Board board){
         this.board = board;

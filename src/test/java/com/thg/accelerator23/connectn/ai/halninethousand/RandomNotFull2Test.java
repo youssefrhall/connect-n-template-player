@@ -9,11 +9,11 @@ import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class randomNotFull2Test {
+class RandomNotFull2Test {
 
     @Test
     void makeMove() {
-        randomNotFull2 randomNotFull2 = new randomNotFull2(Counter.X);
+        RandomNotFull2 randomNotFull2 = new RandomNotFull2(Counter.X);
         Board board = Mockito.mock(Board.class);
         GameConfig gameConfig = new GameConfig(2,8,4);
         Mockito.when(board.getConfig()).thenReturn(gameConfig);
