@@ -13,8 +13,8 @@ public class CheckFullColumns {
     }
 
     public List<Integer> fullColumnChecker(){
-        List<Integer> emptyColumns = new ArrayList<Integer>();
-        for (int column = 0; column < 10; column++){
+        List<Integer> emptyColumns = new ArrayList<>();
+        for (int column = 0; column < board.getConfig().getWidth(); column++){
             if(!board.hasCounterAtPosition(new Position(column,board.getConfig().getHeight() - 1))){
                 emptyColumns.add(column);
             }
