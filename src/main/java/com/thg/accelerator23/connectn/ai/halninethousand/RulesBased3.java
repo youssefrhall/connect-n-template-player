@@ -46,8 +46,10 @@ public class RulesBased3 extends Player {
         int move = Moves.winFinder(arena, getCounter());
         int opMove = Moves.winFinder(arena, getOpponentCounter());
         if (move != 11) {
+            System.out.println("WINNNNNN");
             return move;
         } else if (opMove != 11) {
+            System.out.println("BLOCKKKK");
             return opMove;
         } else {
             CheckFullColumns checkFullColumns = new CheckFullColumns(board);

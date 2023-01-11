@@ -24,7 +24,7 @@ public class Arena {
         int height = board.getConfig().getHeight();
         for (int column = 0; column < width; column++){
             if (board.hasCounterAtPosition(new Position(column, playableHeight[column]))&& this.counterPositions[column][playableHeight[column]] == null ) {
-                this.counterPositions[column][playableHeight[column]] = board.getCounterAtPosition(new Position(column, height));
+                this.counterPositions[column][playableHeight[column]] = board.getCounterAtPosition(new Position(column, playableHeight[column]));
                 this.playableHeight[column] += 1;
             }
         }

@@ -49,4 +49,14 @@ class MovesTest {
         assertTrue(true);
     }
 
+    @Test
+    void horizontalWinTest() {
+        Board board = Mockito.mock(Board.class);
+        GameConfig gameConfig = new GameConfig(10,8,4);
+        Mockito.when(board.getConfig()).thenReturn(gameConfig);
+        Arena arena = new Arena(board);
+//        assertTrue(true, ho);
+
+    }
+
 }
