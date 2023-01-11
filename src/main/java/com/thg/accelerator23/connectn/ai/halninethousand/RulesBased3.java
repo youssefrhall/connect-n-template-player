@@ -3,25 +3,84 @@ package com.thg.accelerator23.connectn.ai.halninethousand;
 import com.thehutgroup.accelerator.connectn.player.Board;
 import com.thehutgroup.accelerator.connectn.player.Counter;
 import com.thehutgroup.accelerator.connectn.player.Player;
+import com.thehutgroup.accelerator.connectn.player.Position;
 
+import java.awt.geom.Area;
 import java.util.List;
 import java.util.Random;
 
 
 public class RulesBased3 extends Player {
-  public RulesBased3(Counter counter) {
-    //TODO: fill in your name here
-    super(counter, RulesBased3.class.getName());
-  }
 
-  @Override
-  public int makeMove(Board board) {
-    //TODO: some crazy analysis
-    //TODO: make sure said analysis uses less than 2G of heap and returns within 10 seconds on whichever machine is running it
-    CheckFullColumns checkFullColumns = new CheckFullColumns(board);
-    List<Integer> emptyColumns = checkFullColumns.fullColumnChecker();
-    Random rand = new Random();
-    System.out.println(emptyColumns);
-    return emptyColumns.get(rand.nextInt(emptyColumns.size()));
-  }
+    Arena arena;
+
+    Counter opponentCounter;
+
+    public Counter getOpponentCounter() {
+        return opponentCounter;
+    }
+
+    public Arena getArena() {
+        return arena;
+    }
+
+    public RulesBased3(Counter counter) {
+        //TODO: fill in your name here
+        super(counter, RulesBased3.class.getName());
+    }
+
+//  public RulesBased3(Arena arena) {
+//    //TODO: fill in your name here
+//    this.arena = arena;
+//  }
+
+    @Override
+    public int makeMove(Board board) {
+        //TODO: some crazy analysis
+        //TODO: make sure said analysis uses less than 2G of heap and returns within 10 seconds on whichever machine is running it
+
+        if (isStart(board)) {
+            System.out.println("new arena");
+            arena = new Arena(board);
+            opponentCounter = findOpponentCounter();
+        }
+
+
+        int move = Moves.winFinder(arena, getCounter());
+        int oPmove = Moves.winFinder(arena, getOpponentCounter());
+        int oPMove = Moves.winFinder(arena, getOpponentCounter());
+        if (move != 11) {
+            return move;
+        } else if (oPMove != 11) {
+            return oPmove;
+
+        } else {
+            CheckFullColumns checkFullColumns = new CheckFullColumns(board);
+            List<Integer> emptyColumns = checkFullColumns.fullColumnChecker();
+            Random rand = new Random();
+            System.out.println(emptyColumns);
+            System.out.println("making random move");
+            return emptyColumns.get(rand.nextInt(emptyColumns.size()));
+        }
+    }
+
+
+    public boolean isStart(Board board) {
+        int counters = 0;
+        for (int i = 0; i < board.getConfig().getWidth(); i++) {
+            Position position = new Position(i, 0);
+            if (board.hasCounterAtPosition(position)) {
+                counters++;
+            }
+        }
+        return counters < 2;
+    }
+
+    public Counter findOpponentCounter() {
+        if (getCounter().equals(Counter.X)) {
+            return Counter.O;
+        } else {
+            return Counter.X;
+        }
+    }
 }
