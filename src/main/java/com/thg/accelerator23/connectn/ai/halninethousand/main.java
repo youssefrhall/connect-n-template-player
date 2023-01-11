@@ -2,7 +2,6 @@ package com.thg.accelerator23.connectn.ai.halninethousand;
 
 import com.thehutgroup.accelerator.connectn.player.Board;
 import com.thehutgroup.accelerator.connectn.player.GameConfig;
-import com.thg.accelerator23.connectn.ai.halninethousand.MiniMax.BoardAnalysis.Node;
 import com.thg.accelerator23.connectn.ai.halninethousand.MiniMax.MiniMax;
 
 public class main {

@@ -1,7 +1,6 @@
 package com.thg.accelerator23.connectn.ai.halninethousand.MiniMax;
 import com.thehutgroup.accelerator.connectn.player.*;
 import com.thg.accelerator23.connectn.ai.halninethousand.MiniMax.BoardAnalysis.BoardAnalyser;
-import com.thg.accelerator23.connectn.ai.halninethousand.MiniMax.BoardAnalysis.Node;
 
 import java.util.ArrayList;
 import java.util.List;

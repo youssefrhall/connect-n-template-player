@@ -3,7 +3,6 @@ package com.thg.accelerator23.connectn.ai.halninethousand;
 import com.thehutgroup.accelerator.connectn.player.Board;
 import com.thehutgroup.accelerator.connectn.player.Counter;
 import com.thehutgroup.accelerator.connectn.player.Player;
-import com.thg.accelerator23.connectn.ai.halninethousand.MiniMax.BoardAnalysis.Node;
 import com.thg.accelerator23.connectn.ai.halninethousand.MiniMax.MiniMax;
 
 
