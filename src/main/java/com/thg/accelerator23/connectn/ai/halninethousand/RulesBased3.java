@@ -43,8 +43,8 @@ public class RulesBased3 extends Player {
         }
         arena.arenaUpdater(board);
         arena.arenaUpdater(board);
-        int move = Moves.winFinder(arena, getCounter());
-        int opMove = Moves.winFinder(arena, getOpponentCounter());
+        int move = Moves.winFinder(arena, getCounter(), 4);
+        int opMove = Moves.winFinder(arena, getOpponentCounter(), 4);
         if (move != 11) {
             System.out.println("WINNNNNN");
             return move;
@@ -56,7 +56,7 @@ public class RulesBased3 extends Player {
             List<Integer> emptyColumns = checkFullColumns.fullColumnChecker();
             Random rand = new Random();
             System.out.println(emptyColumns);
-            System.out.println("making random move");
+            System.out.println("RANDOMMMM");
             return emptyColumns.get(rand.nextInt(emptyColumns.size()));
         }
     }
