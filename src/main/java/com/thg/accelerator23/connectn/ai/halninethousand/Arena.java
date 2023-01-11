@@ -30,6 +30,7 @@ public class Arena {
         }
     }
 
+
     public int[] getPlayableHeight() {
         return playableHeight;
     }

@@ -29,31 +29,26 @@ public class RulesBased3 extends Player {
         super(counter, RulesBased3.class.getName());
     }
 
-//  public RulesBased3(Arena arena) {
 //    //TODO: fill in your name here
-//    this.arena = arena;
-//  }
 
     @Override
     public int makeMove(Board board) {
         //TODO: some crazy analysis
         //TODO: make sure said analysis uses less than 2G of heap and returns within 10 seconds on whichever machine is running it
-
         if (isStart(board)) {
             System.out.println("new arena");
             arena = new Arena(board);
             opponentCounter = findOpponentCounter();
+            System.out.println(opponentCounter);
         }
-
-
+        arena.arenaUpdater(board);
+        arena.arenaUpdater(board);
         int move = Moves.winFinder(arena, getCounter());
-        int oPmove = Moves.winFinder(arena, getOpponentCounter());
-        int oPMove = Moves.winFinder(arena, getOpponentCounter());
+        int opMove = Moves.winFinder(arena, getOpponentCounter());
         if (move != 11) {
             return move;
-        } else if (oPMove != 11) {
-            return oPmove;
-
+        } else if (opMove != 11) {
+            return opMove;
         } else {
             CheckFullColumns checkFullColumns = new CheckFullColumns(board);
             List<Integer> emptyColumns = checkFullColumns.fullColumnChecker();
@@ -63,7 +58,6 @@ public class RulesBased3 extends Player {
             return emptyColumns.get(rand.nextInt(emptyColumns.size()));
         }
     }
-
 
     public boolean isStart(Board board) {
         int counters = 0;
