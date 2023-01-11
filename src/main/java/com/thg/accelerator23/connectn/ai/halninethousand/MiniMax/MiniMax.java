@@ -1,4 +1,4 @@
-package com.thg.accelerator23.connectn.ai.halninethousand;
+package com.thg.accelerator23.connectn.ai.halninethousand.MiniMax;
 
 public class MiniMax {
     public int miniMaxWithAlphaBetaPruning(int node,int depth, boolean maximizingPlayer, int alpha, int beta){

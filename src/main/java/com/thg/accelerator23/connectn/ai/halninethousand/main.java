@@ -1,5 +1,7 @@
 package com.thg.accelerator23.connectn.ai.halninethousand;
 
+import com.thg.accelerator23.connectn.ai.halninethousand.MiniMax.MiniMax;
+
 public class main {
     public static void main(String[] args) {
         MiniMax miniMax = new MiniMax();

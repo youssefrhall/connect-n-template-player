@@ -1,4 +1,4 @@
-package com.thg.accelerator23.connectn.ai.halninethousand;
+package com.thg.accelerator23.connectn.ai.halninethousand.MiniMax;
 
 public class Scoring {
     public Scoring(){
