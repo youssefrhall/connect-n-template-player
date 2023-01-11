@@ -53,9 +53,25 @@ class MovesTest {
     }
 
 
-    @Test
-    void verticalWin() {
-    }
+//    @Test
+//    void verticalWin() {
+//        Board board = Mockito.mock(Board.class);
+//        GameConfig gameConfig = new GameConfig(10,8,4);
+//        Mockito.when(board.getConfig()).thenReturn(gameConfig);
+//        Arena arena = new Arena(board);
+//        arena.setCounter(0,0,Counter.X);
+//        arena.setCounter(0,1,Counter.X);
+//        arena.setCounter(0,2,Counter.X);
+//        arena.setCounter(0,3,Counter.X);
+//        int[] moveHeight = new int[]{3};
+//        assertEquals(true, Moves.verticalWin(arena, Counter.X, 0, moveHeight));
+
+//        arena.setCounter(3,0, null);
+//        assertEquals(true, Moves.verticalWin(arena, Counter.X, 0, moveHeight, 3));
+//
+//        arena.setCounter(2,0, null);
+//        assertEquals(true, Moves.verticalWin(arena, Counter.X, 0, moveHeight, 2));
+//    }
 
     @Test
     void diagonalDownWin() {

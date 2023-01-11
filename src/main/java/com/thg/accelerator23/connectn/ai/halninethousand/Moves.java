@@ -8,7 +8,7 @@ public class Moves {
     public static int winFinder(Arena arena, Counter counter, int winLength) {
         int[] moveHeight = arena.getPlayableHeight();
         for (int column = 0; column < 10; column++) {
-            if(moveHeight[column] < 7) {
+            if(moveHeight[column] < 8) {
                 arena.setCounter(column, moveHeight[column], counter);
                 if (horizontalWin(arena, counter, column, moveHeight, winLength) || verticalWin(arena, counter, column, moveHeight) || diagonalDownWin(arena, counter, column, moveHeight) || diagonalUpWin(arena, counter, column, moveHeight)) {
                     arena.setCounter(column, moveHeight[column], null);
@@ -17,7 +17,6 @@ public class Moves {
             }
             arena.setCounter(column, moveHeight[column], null);
         }
-        ;
         return 11;
     }
 
