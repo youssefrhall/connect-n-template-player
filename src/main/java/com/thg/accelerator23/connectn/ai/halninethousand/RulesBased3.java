@@ -5,7 +5,6 @@ import com.thehutgroup.accelerator.connectn.player.Counter;
 import com.thehutgroup.accelerator.connectn.player.Player;
 import com.thehutgroup.accelerator.connectn.player.Position;
 
-import java.awt.geom.Area;
 import java.util.List;
 import java.util.Random;
 
@@ -14,7 +13,11 @@ public class RulesBased3 extends Player {
 
     Arena arena;
 
+    Counter counter;
+
     Counter opponentCounter;
+
+    MoveReturner moveReturner;
 
     public Counter getOpponentCounter() {
         return opponentCounter;
@@ -38,28 +41,16 @@ public class RulesBased3 extends Player {
         if (isStart(board)) {
             System.out.println("new arena");
             arena = new Arena(board);
+            counter = getCounter();
             opponentCounter = findOpponentCounter();
-            System.out.println(opponentCounter);
+            moveReturner = new MoveReturner(arena, counter, opponentCounter);
         }
         arena.arenaUpdater(board);
         arena.arenaUpdater(board);
-        int move = Moves.winFinder(arena, getCounter(), 4);
-        int opMove = Moves.winFinder(arena, getOpponentCounter(), 4);
-        if (move != 11) {
-            System.out.println("WINNNNNN");
-            return move;
-        } else if (opMove != 11) {
-            System.out.println("BLOCKKKK");
-            return opMove;
-        } else {
-            CheckFullColumns checkFullColumns = new CheckFullColumns(board);
-            List<Integer> emptyColumns = checkFullColumns.fullColumnChecker();
-            Random rand = new Random();
-            System.out.println(emptyColumns);
-            System.out.println("RANDOMMMM");
-            return emptyColumns.get(rand.nextInt(emptyColumns.size()));
-        }
+        return moveReturner.findMove();
+
     }
+
 
     public boolean isStart(Board board) {
         int counters = 0;

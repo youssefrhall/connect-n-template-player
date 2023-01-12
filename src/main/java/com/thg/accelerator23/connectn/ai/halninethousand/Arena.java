@@ -11,7 +11,6 @@ public class Arena {
     private GameConfig config;
     private int[] playableHeight;
 
-    private int turn;
 
     Arena(Board board){
         this.config = board.getConfig();

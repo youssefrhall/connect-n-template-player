@@ -2,38 +2,23 @@ package com.thg.accelerator23.connectn.ai.halninethousand;
 
 import com.thehutgroup.accelerator.connectn.player.Counter;
 
-public class Moves {
+public class WinFinders {
+
+    private int turn;
 
 
-    public static int winFinder(Arena arena, Counter counter, int winLength) {
-        int[] moveHeight = arena.getPlayableHeight();
-        for (int column = 0; column < 10; column++) {
-            if(moveHeight[column] < 7) {
-                arena.setCounter(column, moveHeight[column], counter);
-                if (horizontalWin(arena, counter, column, moveHeight, winLength) || verticalWin(arena, counter, column, moveHeight) || diagonalDownWin(arena, counter, column, moveHeight) || diagonalUpWin(arena, counter, column, moveHeight)) {
-                    arena.setCounter(column, moveHeight[column], null);
-                    return column;
-                }
-            }
-            arena.setCounter(column, moveHeight[column], null);
-        }
-        ;
-        return 11;
-    }
-
-    public static boolean horizontalWin(Arena arena, Counter counter, int column, int[] moveHeight, int winLenght) {
-        for (int offset = 0; offset <= winLenght - 1; offset++) {
-            if (column - offset >= 0 && column - offset + winLenght - 1 < 10) {
-                for (int i = 0; i < winLenght - 1; i++){
-                    if (!(arena.getCounter(column + i - offset, moveHeight[column]) == counter)) {
-                        return false;
-                    }
+    public static boolean horizontalWin(Arena arena, Counter counter, int column, int[] moveHeight) {
+        for (int offset = 0; offset <= 3; offset++) {
+            if (column - offset >= 0 && column - offset + 3 < 10) {
+                if (arena.getCounter(column - offset, moveHeight[column]) == counter && arena.getCounter(column + 1 - offset, moveHeight[column]) == counter && arena.getCounter(column + 2 - offset, moveHeight[column]) == counter && arena.getCounter(column + 3 - offset, moveHeight[column]) == counter) {
+                    System.out.println("horizonal move");
+                    return true;
                 }
             }
         }
-        System.out.println("horizonal move");
-        return true;
+        return false;
     }
+
 
     public static boolean verticalWin(Arena arena, Counter counter, int column, int[] moveHeight) {
         if (arena.getPlayableHeight()[column] > 2) {
@@ -42,6 +27,7 @@ public class Moves {
                 return true;
             }
         }
+
         return false;
     }
 
@@ -58,6 +44,7 @@ public class Moves {
     }
 
     public static boolean diagonalUpWin(Arena arena, Counter counter, int column, int[] moveHeight) {
+
         for (int offset = 0; offset < 3; offset++) {
             if (arena.getPlayableHeight()[column] < 7 && column - offset >= 0 && column - offset + 3 < 10 && moveHeight[column] - offset >= 0 && moveHeight[column] - offset < 10) {
                 if (arena.getCounter(column - offset, moveHeight[column] - offset) == counter && arena.getCounter(column + 1 - offset, moveHeight[column] + 1 - offset) == counter && arena.getCounter(column + 2 - offset, moveHeight[column] + 2 - offset) == counter && arena.getCounter(column + 3 - offset, moveHeight[column] + 3 - offset) == counter) {
