@@ -13,16 +13,14 @@ public class MoveReturner {
     Arena arena;
     Counter counter;
     Counter opponentsCounter;
-    private final Board board;
 
-    MoveReturner(Arena arena, Counter counter, Counter opponentsCounter, Board board){
+    MoveReturner(Arena arena, Counter counter, Counter opponentsCounter){
         this.arena = arena;
         this.counter = counter;
         this.opponentsCounter = opponentsCounter;
-        this.board = board;
     }
 
-    public int findMove(){
+    public int findMove(Board board){
         if(arena.getCounter(4,0) == null){
             return 4;
         }
@@ -38,7 +36,10 @@ public class MoveReturner {
         }
         else{
             MiniMax miniMax = new MiniMax(counter);
-            return miniMax.miniMaxWithAlphaBetaPruning(board,0,true,-1000,1000);
+            System.out.println(board.hasCounterAtPosition(new Position(4,0)));
+            int finalvalue =  miniMax.miniMaxWithAlphaBetaPruning(board,0,true,-1000,1000);
+            System.out.println(finalvalue);
+            return finalvalue;
         }
     }
 

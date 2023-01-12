@@ -21,12 +21,12 @@ class MovesTest {
         Mockito.when(board.hasCounterAtPosition(new Position(3, 0))).thenReturn(true);
         Mockito.when(board.hasCounterAtPosition(new Position(4, 0))).thenReturn(true);
         Mockito.when(board.hasCounterAtPosition(new Position(6, 0))).thenReturn(true);
-        MoveReturner moveReturner = new MoveReturner(arena, Counter.X, Counter.O,board);
+        MoveReturner moveReturner = new MoveReturner(arena, Counter.X, Counter.O);
         arena.arenaUpdater(board);
         arena.setCounter(3,0,Counter.X);
         arena.setCounter(4,0,Counter.X);
         arena.setCounter(6,0,Counter.X);
-        int moveMade = moveReturner.findMove();
+        int moveMade = moveReturner.findMove(board);
         assertEquals(5, moveMade);
     }
     @Test
@@ -38,13 +38,13 @@ class MovesTest {
         Mockito.when(board.hasCounterAtPosition(new Position(3, 0))).thenReturn(true);
         Mockito.when(board.hasCounterAtPosition(new Position(3, 1))).thenReturn(true);
         Mockito.when(board.hasCounterAtPosition(new Position(3, 2))).thenReturn(true);
-        MoveReturner moveReturner = new MoveReturner(arena, Counter.X, Counter.O,board);
+        MoveReturner moveReturner = new MoveReturner(arena, Counter.X, Counter.O);
         arena.arenaUpdater(board);
         arena.setCounter(3,0,Counter.X);
         arena.setCounter(3,1,Counter.X);
         arena.setCounter(3,2,Counter.X);
         arena.setCounter(4,0,Counter.O);
-        int moveMade = moveReturner.findMove();
+        int moveMade = moveReturner.findMove(board);
         assertEquals(3, moveMade);
     }
 }
