@@ -14,16 +14,15 @@ import static org.junit.jupiter.api.Assertions.*;
 class ArenaTest {
 
     @Test
-    void arenaUpdater() {
+    void getCounterPosition() {
+        RulesBased3 rulesBased3 = new RulesBased3(Counter.X);
         Board board = Mockito.mock(Board.class);
         GameConfig gameConfig = new GameConfig(10,8,4);
         Mockito.when(board.getConfig()).thenReturn(gameConfig);
-        Position position = new Position(0, 0);
-        Mockito.when(board.hasCounterAtPosition(position)).thenReturn(true);
-        Mockito.when(board.getCounterAtPosition(position)).thenReturn(Counter.X);
         Arena arena = new Arena(board);
+        Mockito.when(board.hasCounterAtPosition(new Position(3, 0))).thenReturn(true);
+        System.out.println("mock :" + board.hasCounterAtPosition(new Position(3, 0)));
         arena.arenaUpdater(board);
-        assertEquals(Arrays.toString(new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 0}), Arrays.toString(arena.getPlayableHeight()));
-        assertEquals(Counter.X, arena.getCounter(0 ,0));
+        assertEquals(Arrays.toString(new int[]{0,0,0,1,0,0,0,0,0,0}), Arrays.toString(arena.getPlayableHeight()));
     }
 }

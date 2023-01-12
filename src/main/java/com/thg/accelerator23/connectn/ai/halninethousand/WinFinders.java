@@ -2,25 +2,10 @@ package com.thg.accelerator23.connectn.ai.halninethousand;
 
 import com.thehutgroup.accelerator.connectn.player.Counter;
 
-public class Moves {
+public class WinFinders {
 
     private int turn;
 
-    public static int winFinder(Arena arena, Counter counter) {
-        int[] moveHeight = arena.getPlayableHeight();
-        for (int column = 0; column < 10; column++) {
-            if(moveHeight[column] < 8) {
-                arena.setCounter(column, moveHeight[column], counter);
-                if (horizontalWin(arena, counter, column, moveHeight) || verticalWin(arena, counter, column, moveHeight) || diagonalDownWin(arena, counter, column, moveHeight) || diagonalUpWin(arena, counter, column, moveHeight)) {
-                    arena.setCounter(column, moveHeight[column], null);
-                    return column;
-                }
-            }
-            arena.setCounter(column, moveHeight[column], null);
-        }
-        ;
-        return 11;
-    }
 
     public static boolean horizontalWin(Arena arena, Counter counter, int column, int[] moveHeight) {
         for (int offset = 0; offset <= 3; offset++) {
@@ -58,7 +43,7 @@ public class Moves {
         return false;
     }
 
-    private static boolean diagonalUpWin(Arena arena, Counter counter, int column, int[] moveHeight) {
+    public static boolean diagonalUpWin(Arena arena, Counter counter, int column, int[] moveHeight) {
 
         for (int offset = 0; offset < 3; offset++) {
             if (arena.getPlayableHeight()[column] < 7 && column - offset >= 0 && column - offset + 3 < 10 && moveHeight[column] - offset >= 0 && moveHeight[column] - offset < 10) {
