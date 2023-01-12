@@ -8,70 +8,59 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 class MovesTest {
 
-
-//    @Test
-//    void winFinderHorizontal() {
-//        Board board = Mockito.mock(Board.class);
-//        GameConfig gameConfig = new GameConfig(10,8,4);
-//        Mockito.when(board.getConfig()).thenReturn(gameConfig);
-//        Arena arena = new Arena(board);
-//        Mockito.when(board.hasCounterAtPosition(new Position(3, 0))).thenReturn(true);
-//        Mockito.when(board.hasCounterAtPosition(new Position(4, 0))).thenReturn(true);
-//        Mockito.when(board.hasCounterAtPosition(new Position(6, 0))).thenReturn(true);
-//        arena.arenaUpdater(board);
-//        arena.setCounter(3,0,Counter.X);
-//        arena.setCounter(4,0,Counter.X);
-//        arena.setCounter(6,0,Counter.X);
-//        int moveMade = Moves.winFinder(arena, Counter.X, 4);
-//        assertEquals(5, moveMade);
-//    }
-
-
     @Test
     void horizontalWinTest() {
-        Board board = Mockito.mock(Board.class);
-        GameConfig gameConfig = new GameConfig(10,8,4);
-        Mockito.when(board.getConfig()).thenReturn(gameConfig);
-        Arena arena = new Arena(board);
-        arena.setCounter(0,0,Counter.X);
-        arena.setCounter(1,0,Counter.X);
-        arena.setCounter(2,0,Counter.X);
-        arena.setCounter(3,0,Counter.X);
-        int[] moveHeight = new int[]{0};
-        assertEquals(true, Moves.horizontalWin(arena, Counter.X, 0, moveHeight, 4));
-
-        arena.setCounter(3,0, null);
-        assertEquals(true, Moves.horizontalWin(arena, Counter.X, 0, moveHeight, 3));
-
-        arena.setCounter(2,0, null);
-        assertEquals(true, Moves.horizontalWin(arena, Counter.X, 0, moveHeight, 2));
+        Arena arena = Mockito.mock(Arena.class);
+        Mockito.when(arena.getPlayableHeight()).thenReturn(new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
+        Mockito.when(arena.getCounter(0,0)).thenReturn(Counter.X);
+        assertEquals(true, Moves.horizontalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 1));
+        assertEquals(true, Moves.horizontalWin(arena, Counter.X, 2, arena.getPlayableHeight(), 1));
+        assertEquals(false, Moves.horizontalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 2));
+        Mockito.when(arena.getCounter(1,0)).thenReturn(Counter.X);
+        assertEquals(true, Moves.horizontalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 1));
+        assertEquals(true, Moves.horizontalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 2));
+        assertEquals(false, Moves.horizontalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 3));
+        Mockito.when(arena.getCounter(2,0)).thenReturn(Counter.X);
+        assertEquals(true, Moves.horizontalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 2));
+        assertEquals(true, Moves.horizontalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 3));
+        assertEquals(false, Moves.horizontalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 4));
+        Mockito.when(arena.getCounter(3,0)).thenReturn(Counter.X);
+        assertEquals(true, Moves.horizontalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 3));
+        assertEquals(true, Moves.horizontalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 4));
     }
 
 
-//    @Test
-//    void verticalWin() {
-//        Board board = Mockito.mock(Board.class);
-//        GameConfig gameConfig = new GameConfig(10,8,4);
-//        Mockito.when(board.getConfig()).thenReturn(gameConfig);
-//        Arena arena = new Arena(board);
-//        arena.setCounter(0,0,Counter.X);
-//        arena.setCounter(0,1,Counter.X);
-//        arena.setCounter(0,2,Counter.X);
-//        arena.setCounter(0,3,Counter.X);
-//        int[] moveHeight = new int[]{3};
-//        assertEquals(true, Moves.verticalWin(arena, Counter.X, 0, moveHeight));
+    @Test
+    void verticalWinTest() {
+        Arena arena = Mockito.mock(Arena.class);
+        Mockito.when(arena.getCounter(0,0)).thenReturn(Counter.X);
+        Mockito.when(arena.getPlayableHeight()).thenReturn(new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0});
+        assertEquals(true, Moves.verticalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 1));
+        assertEquals(false, Moves.verticalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 2));
+        Mockito.when(arena.getCounter(0,1)).thenReturn(Counter.X);
+        Mockito.when(arena.getPlayableHeight()).thenReturn(new int[]{1, 0, 0, 0, 0, 0, 0, 0, 0, 0});
+        assertEquals(true, Moves.verticalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 1));
+        assertEquals(true, Moves.verticalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 2));
+        assertEquals(false, Moves.verticalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 3));
+        Mockito.when(arena.getCounter(0,2)).thenReturn(Counter.X);
+        Mockito.when(arena.getPlayableHeight()).thenReturn(new int[]{2, 0, 0, 0, 0, 0, 0, 0, 0, 0});
+        assertEquals(true, Moves.verticalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 2));
+        assertEquals(true, Moves.verticalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 3));
+        Mockito.when(arena.getCounter(0,3)).thenReturn(Counter.X);
+        Mockito.when(arena.getPlayableHeight()).thenReturn(new int[]{3, 0, 0, 0, 0, 0, 0, 0, 0, 0});
+        assertEquals(true, Moves.verticalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 4));
+        Mockito.when(arena.getCounter(0,4)).thenReturn(Counter.X);
+        Mockito.when(arena.getCounter(0,5)).thenReturn(Counter.X);
+        Mockito.when(arena.getCounter(0,6)).thenReturn(Counter.X);
+        Mockito.when(arena.getPlayableHeight()).thenReturn(new int[]{6, 0, 0, 0, 0, 0, 0, 0, 0, 0});
+        assertEquals(true, Moves.verticalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 4));
+        assertEquals(true, Moves.verticalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 7));
 
-//        arena.setCounter(3,0, null);
-//        assertEquals(true, Moves.verticalWin(arena, Counter.X, 0, moveHeight, 3));
-//
-//        arena.setCounter(2,0, null);
-//        assertEquals(true, Moves.verticalWin(arena, Counter.X, 0, moveHeight, 2));
-//    }
+    }
 
     @Test
     void diagonalDownWin() {

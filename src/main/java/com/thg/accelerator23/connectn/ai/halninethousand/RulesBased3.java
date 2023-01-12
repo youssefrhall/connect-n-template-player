@@ -45,12 +45,30 @@ public class RulesBased3 extends Player {
         arena.arenaUpdater(board);
         int move = Moves.winFinder(arena, getCounter(), 4);
         int opMove = Moves.winFinder(arena, getOpponentCounter(), 4);
+        int move3 = Moves.winFinder(arena, getCounter(), 3);
+        int opMove3 = Moves.winFinder(arena, getOpponentCounter(), 3);
+        int move2 = Moves.winFinder(arena, getCounter(), 2);
+        int opMove2 = Moves.winFinder(arena, getOpponentCounter(), 2);
+
+
         if (move != 11) {
             System.out.println("WINNNNNN");
             return move;
         } else if (opMove != 11) {
             System.out.println("BLOCKKKK");
             return opMove;
+        } else if (move3 != 11) {
+            System.out.println("GET THREE");
+            return move3;
+        } else if (opMove3 != 11) {
+            System.out.println("BLOCK THREE");
+            return opMove3;
+        } else if (move2 != 11) {
+            System.out.println("GET TWO");
+            return move2;
+        } else if (opMove2 != 11) {
+            System.out.println("BLOCK TWO");
+            return opMove2;
         } else {
             CheckFullColumns checkFullColumns = new CheckFullColumns(board);
             List<Integer> emptyColumns = checkFullColumns.fullColumnChecker();
