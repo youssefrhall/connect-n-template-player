@@ -5,16 +5,22 @@ import com.thehutgroup.accelerator.connectn.player.Counter;
 import com.thehutgroup.accelerator.connectn.player.Player;
 
 
-public class Four0 extends Player {
-  public Four0(Counter counter) {
+public class horizontal extends Player {
+
+  int i = 0;
+
+  public horizontal(Counter counter) {
     //TODO: fill in your name here
-    super(counter, Four0.class.getName());
+    super(counter, horizontal.class.getName());
   }
 
   @Override
   public int makeMove(Board board) {
     //TODO: some crazy analysis
     //TODO: make sure said analysis uses less than 2G of heap and returns within 10 seconds on whichever machine is running i
-    return 4;
+    if(i == 9) {
+      i = -1;
+    }
+    return i++;
   }
 }
