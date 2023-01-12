@@ -25,6 +25,7 @@ public class Moves {
             if (column - offset >= 0 && column - offset + winLenght - 1 < 10) {
                 for (int i = 0; i < winLenght - 1; i++){
                     if (!(arena.getCounter(column + i - offset, moveHeight[column]) == counter)) {
+
                         return false;
                     }
                 }

@@ -13,23 +13,24 @@ public class Arena {
 
     private int turn;
 
-    Arena(Board board){
+    Arena(Board board) {
         this.config = board.getConfig();
         this.counterPositions = new Counter[board.getConfig().getWidth()][board.getConfig().getHeight()];
         this.playableHeight = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     }
 
-    public void arenaUpdater(Board board){
+    public void arenaUpdater(Board board) {
         int width = board.getConfig().getWidth();
         int height = board.getConfig().getHeight();
-        for (int column = 0; column < width; column++){
-            if (board.hasCounterAtPosition(new Position(column, playableHeight[column]))&& this.counterPositions[column][playableHeight[column]] == null ) {
+        for (int column = 0; column < width; column++) {
+            if (board.hasCounterAtPosition(new Position(column, playableHeight[column])) && this.counterPositions[column][playableHeight[column]] == null) {
                 this.counterPositions[column][playableHeight[column]] = board.getCounterAtPosition(new Position(column, playableHeight[column]));
-                this.playableHeight[column] += 1;
+                if (this.playableHeight[column] < height - 1) {
+                    this.playableHeight[column] += 1;
+                }
             }
         }
     }
-
 
     public int[] getPlayableHeight() {
         return playableHeight;
