@@ -43,7 +43,7 @@ public class RulesBased3 extends Player {
             arena = new Arena(board);
             counter = getCounter();
             opponentCounter = findOpponentCounter();
-            moveReturner = new MoveReturner(arena, counter, opponentCounter);
+            moveReturner = new MoveReturner(arena, counter, opponentCounter,board);
         }
         arena.arenaUpdater(board);
         arena.arenaUpdater(board);

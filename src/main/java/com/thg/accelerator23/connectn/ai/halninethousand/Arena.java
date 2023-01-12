@@ -23,12 +23,17 @@ public class Arena {
         int height = board.getConfig().getHeight();
         for (int column = 0; column < width; column++){
             if (board.hasCounterAtPosition(new Position(column, playableHeight[column]))&& this.counterPositions[column][playableHeight[column]] == null ) {
-                this.counterPositions[column][playableHeight[column]] = board.getCounterAtPosition(new Position(column, playableHeight[column]));
-                this.playableHeight[column] += 1;
+                topCounterCheck(board,column,playableHeight[column]);
             }
         }
     }
-
+    private void topCounterCheck(Board board, int column, int height){
+        this.counterPositions[column][playableHeight[column]] = board.getCounterAtPosition(new Position(column, playableHeight[column]));
+        this.playableHeight[column] += 1;
+        if (board.hasCounterAtPosition(new Position(column, height +1))){
+            topCounterCheck(board, column, height+1);
+        }
+    }
 
     public int[] getPlayableHeight() {
         return playableHeight;

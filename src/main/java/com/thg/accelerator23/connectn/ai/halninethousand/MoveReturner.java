@@ -1,6 +1,9 @@
 package com.thg.accelerator23.connectn.ai.halninethousand;
 
+import com.thehutgroup.accelerator.connectn.player.Board;
 import com.thehutgroup.accelerator.connectn.player.Counter;
+import com.thehutgroup.accelerator.connectn.player.Position;
+import com.thg.accelerator23.connectn.ai.halninethousand.MiniMax.MiniMax;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,14 +13,19 @@ public class MoveReturner {
     Arena arena;
     Counter counter;
     Counter opponentsCounter;
+    private final Board board;
 
-    MoveReturner(Arena arena, Counter counter, Counter opponentsCounter){
+    MoveReturner(Arena arena, Counter counter, Counter opponentsCounter, Board board){
         this.arena = arena;
         this.counter = counter;
         this.opponentsCounter = opponentsCounter;
+        this.board = board;
     }
 
     public int findMove(){
+        if(arena.getCounter(4,0) == null){
+            return 4;
+        }
         int move = winFinder(arena, counter, opponentsCounter, true);
         if (move != 11){
             return move;
@@ -29,7 +37,8 @@ public class MoveReturner {
             return move;
         }
         else{
-            return randomMove();
+            MiniMax miniMax = new MiniMax(counter);
+            return miniMax.miniMaxWithAlphaBetaPruning(board,0,true,-1000,1000);
         }
     }
 
