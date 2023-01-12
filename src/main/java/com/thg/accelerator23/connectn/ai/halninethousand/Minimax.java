@@ -14,9 +14,7 @@ public class Minimax extends Player {
 
     @Override
     public int makeMove(Board board) {
-        MiniMax miniMax = new MiniMax();
-        int finalValue = miniMax.miniMaxWithAlphaBetaPruning(board,0,true,-1000,1000);
-        System.out.println(finalValue);
-        return finalValue;
+        MiniMax miniMax = new MiniMax(getCounter());
+        return miniMax.miniMaxWithAlphaBetaPruning(board,0,true,-1000,1000);
     }
 }
