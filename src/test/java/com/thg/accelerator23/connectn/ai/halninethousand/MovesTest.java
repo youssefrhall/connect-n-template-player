@@ -19,22 +19,22 @@ class MovesTest {
         Mockito.when(arena.getOpponentCounter()).thenReturn(Counter.O);
 
         Mockito.when(arena.getCounter(3,0)).thenReturn(Counter.X);
-//        assertTrue(Moves.horizontalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 1));
-//        assertTrue(Moves.horizontalWin(arena, Counter.X, 2, arena.getPlayableHeight(), 1));
-//        assertFalse(Moves.horizontalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 2));
+        assertTrue(Moves.horizontalWin(arena, Counter.X, 3, arena.getPlayableHeight(), 1));
+        assertTrue(Moves.horizontalWin(arena, Counter.X, 3, arena.getPlayableHeight(), 1));
+        assertFalse(Moves.horizontalWin(arena, Counter.X, 3, arena.getPlayableHeight(), 2));
         Mockito.when(arena.getCounter(4,0)).thenReturn(Counter.X);
-//        assertTrue(Moves.horizontalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 1));
-//        assertTrue(Moves.horizontalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 2));
-//        assertFalse(Moves.horizontalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 3));
+        assertTrue(Moves.horizontalWin(arena, Counter.X, 3, arena.getPlayableHeight(), 1));
+        assertTrue(Moves.horizontalWin(arena, Counter.X, 3, arena.getPlayableHeight(), 2));
+        assertFalse(Moves.horizontalWin(arena, Counter.X, 3, arena.getPlayableHeight(), 3));
         Mockito.when(arena.getCounter(5,0)).thenReturn(Counter.X);
-//        assertTrue(Moves.horizontalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 2));
-//        assertTrue(Moves.horizontalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 3));
-//        assertFalse(Moves.horizontalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 4));
+        assertTrue(Moves.horizontalWin(arena, Counter.X, 3, arena.getPlayableHeight(), 2));
+        assertTrue(Moves.horizontalWin(arena, Counter.X, 3, arena.getPlayableHeight(), 3));
+        assertFalse(Moves.horizontalWin(arena, Counter.X, 3, arena.getPlayableHeight(), 4));
         Mockito.when(arena.getCounter(6,0)).thenReturn(Counter.X);
-//        assertTrue(Moves.horizontalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 3));
-        assertTrue(Moves.horizontalWin(arena, Counter.X, 6, arena.getPlayableHeight(), 4));
+        assertTrue(Moves.horizontalWin(arena, Counter.X, 3, arena.getPlayableHeight(), 3));
+        assertTrue(Moves.horizontalWin(arena, Counter.X, 3, arena.getPlayableHeight(), 4));
         Mockito.when(arena.getCounter(3,0)).thenReturn(Counter.O);
-//        assertFalse(Moves.horizontalWin(arena, Counter.X, 0, arena.getPlayableHeight(), 3));
+        assertFalse(Moves.horizontalWin(arena, Counter.X, 3, arena.getPlayableHeight(), 3));
     }
 
 

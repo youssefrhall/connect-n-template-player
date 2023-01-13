@@ -4,7 +4,6 @@ import com.thehutgroup.accelerator.connectn.player.Counter;
 
 public class Moves {
 
-
     public static int winFinder(Arena arena, Counter counter, int winLength) {
         int[] moveHeight = arena.getPlayableHeight();
         for (int column = 0; column < 10; column++) {
@@ -49,40 +48,30 @@ public class Moves {
     }
 
     public static boolean verticalWin(Arena arena, Counter counter, int column, int[] moveHeight, int count) {
-        if (arena.getPlayableHeight()[column] + 1 < count) {
-            return false;
-        }
-        System.out.println("position high enough for count");
-        System.out.println(arena.getPlayableHeight()[column] + " arena.getPlayableHeight()[column]");
-        System.out.println(count + " count");
-        if (arena.getPlayableHeight()[column] + 1 >= count ) {
-            System.out.println(arena.getPlayableHeight()[column] >= count - 1);
-            int notCounter = 0;
+//        System.out.println("position high enough for count");
+//        System.out.println(arena.getPlayableHeight()[column] + " arena.getPlayableHeight()[column]");
+//        System.out.println(count + " count");
+        if (arena.getPlayableHeight()[column] + 1 >= count) {
+//            System.out.println(arena.getPlayableHeight()[column] >= count - 1);
+            int counterCount = 0;
             for (int i = 0; i > -count; i--) {
-                System.out.println("x:" + column + " y:" + (moveHeight[column] + i) + " Counter:" +arena.getCounter(column, moveHeight[column] + i));
-                if ((arena.getCounter(column, moveHeight[column] + i) != counter)) {
-                    notCounter += 1;
-                    System.out.println(notCounter);
-                    if (notCounter >= 3 - count)
-                        return false;
+//                System.out.println("x:" + column + " y:" + (moveHeight[column] + i) + " Counter:" +arena.getCounter(column, moveHeight[column] + i));
+                if (arena.getCounter(column, moveHeight[column] + i) == counter) {
+                    counterCount += 1;
+//                    System.out.println(counterCount);
+                    if (counterCount >= count) {
+                        System.out.println("vertical move");
+                        return true;
+                    }
+
                 }
             }
         }
-        System.out.println("vertical move");
-        return true;
+
+        return false;
     }
 
 
-//    public static boolean verticalWin(Arena arena, Counter counter, int column, int[] moveHeight) {
-//        System.out.println("verticalWin");
-//        if (arena.getPlayableHeight()[column] > 2) {
-//            if (arena.getCounter(column, moveHeight[column]) == counter && arena.getCounter(column, moveHeight[column] - 1) == counter && arena.getCounter(column, moveHeight[column] - 2) == counter && arena.getCounter(column, moveHeight[column] - 3) == counter) {
-//                System.out.println("vertical move");
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
 
 
     public static boolean diagonalDownWin(Arena arena, Counter counter, int column, int[] moveHeight) {
