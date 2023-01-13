@@ -15,7 +15,6 @@ class ArenaTest {
 
     @Test
     void getCounterPosition() {
-        RulesBased3 rulesBased3 = new RulesBased3(Counter.X);
         Board board = Mockito.mock(Board.class);
         GameConfig gameConfig = new GameConfig(10,8,4);
         Mockito.when(board.getConfig()).thenReturn(gameConfig);

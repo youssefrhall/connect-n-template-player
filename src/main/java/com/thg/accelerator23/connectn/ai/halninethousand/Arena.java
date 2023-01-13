@@ -3,24 +3,28 @@ package com.thg.accelerator23.connectn.ai.halninethousand;
 
 import com.thehutgroup.accelerator.connectn.player.Board;
 import com.thehutgroup.accelerator.connectn.player.Counter;
-import com.thehutgroup.accelerator.connectn.player.GameConfig;
 import com.thehutgroup.accelerator.connectn.player.Position;
 
 public class Arena {
     private Counter[][] counterPositions;
-    private GameConfig config;
     private int[] playableHeight;
 
 
     Arena(Board board){
-        this.config = board.getConfig();
         this.counterPositions = new Counter[board.getConfig().getWidth()][board.getConfig().getHeight()];
-        this.playableHeight = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+        this.playableHeight = playableHeightMaker(board);
+    }
+
+    private int[] playableHeightMaker(Board board){
+        int[] playableHeightList = new int[board.getConfig().getWidth()];
+        for (int index = 0; index < playableHeightList.length; index++){
+            playableHeightList[index] = 0;
+        }
+        return playableHeightList;
     }
 
     public void arenaUpdater(Board board){
         int width = board.getConfig().getWidth();
-        int height = board.getConfig().getHeight();
         for (int column = 0; column < width; column++){
             if (board.hasCounterAtPosition(new Position(column, playableHeight[column]))&& this.counterPositions[column][playableHeight[column]] == null ) {
                 topCounterCheck(board,column,playableHeight[column]);
@@ -47,12 +51,5 @@ public class Arena {
        counterPositions[x][y] = counter;
     }
 
-    public Counter[][] getCounterPositions() {
-        return counterPositions;
-    }
-
-    public GameConfig getConfig() {
-        return config;
-    }
 }
 
