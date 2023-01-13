@@ -21,15 +21,16 @@ public class MoveReturner {
     }
 
     public int findMove(Board board){
-        if(arena.getCounter(4,0) == null){
-            return 4;
+        int middleColumn = board.getConfig().getWidth()/2 -1;
+        if(arena.getCounter(middleColumn,0) == null){
+            return middleColumn;
         }
-        int move = winFinder(arena, counter, opponentsCounter, true);
+        int move = winFinder(arena, counter);
         if (move != 11){
             return move;
         }
         else{
-            move = winFinder(arena, opponentsCounter, counter, false);
+            move = winFinder(arena, opponentsCounter);
         }
         if (move != 11){
             return move;
@@ -37,13 +38,13 @@ public class MoveReturner {
         else{
             MiniMax miniMax = new MiniMax(counter);
             System.out.println(board.hasCounterAtPosition(new Position(4,0)));
-            int finalvalue =  miniMax.miniMaxWithAlphaBetaPruning(board,0,true,-1000,1000);
-            System.out.println(finalvalue);
-            return finalvalue;
+            int finalValue =  miniMax.miniMaxWithAlphaBetaPruning(board,0,true,-1000,1000);
+            System.out.println(finalValue);
+            return finalValue;
         }
     }
 
-    private int winFinder(Arena arena, Counter counter, Counter opponent, Boolean winCheck) {
+    private int winFinder(Arena arena, Counter counter) {
         int[] moveHeight = arena.getPlayableHeight();
         for (int column = 0; column < 10; column++) {
             if(moveHeight[column] < 8) {
