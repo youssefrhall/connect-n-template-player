@@ -11,7 +11,11 @@ public class Arena {
     private GameConfig config;
     private int[] playableHeight;
 
-    private int turn;
+    Counter opponentCounter;
+
+    public Counter getOpponentCounter() {
+        return opponentCounter;
+    }
 
     Arena(Board board) {
         this.config = board.getConfig();

@@ -14,11 +14,11 @@ public class RulesBased3 extends Player {
 
     Arena arena;
 
-    Counter opponentCounter;
-
-    public Counter getOpponentCounter() {
-        return opponentCounter;
-    }
+//    Counter opponentCounter;
+//
+//    public Counter getOpponentCounter() {
+//        return opponentCounter;
+//    }
 
     public Arena getArena() {
         return arena;
@@ -38,17 +38,17 @@ public class RulesBased3 extends Player {
         if (isStart(board)) {
             System.out.println("new arena");
             arena = new Arena(board);
-            opponentCounter = findOpponentCounter();
-            System.out.println(opponentCounter);
+            arena.opponentCounter = findOpponentCounter(getCounter());
+            System.out.println(arena.opponentCounter);
         }
         arena.arenaUpdater(board);
         arena.arenaUpdater(board);
         int move = Moves.winFinder(arena, getCounter(), 4);
-        int opMove = Moves.winFinder(arena, getOpponentCounter(), 4);
+        int opMove = Moves.winFinder(arena, arena.getOpponentCounter(), 4);
         int move3 = Moves.winFinder(arena, getCounter(), 3);
-        int opMove3 = Moves.winFinder(arena, getOpponentCounter(), 3);
+        int opMove3 = Moves.winFinder(arena, arena.getOpponentCounter(), 3);
         int move2 = Moves.winFinder(arena, getCounter(), 2);
-        int opMove2 = Moves.winFinder(arena, getOpponentCounter(), 2);
+        int opMove2 = Moves.winFinder(arena, arena.getOpponentCounter(), 2);
 
 
         if (move != 11) {
@@ -60,13 +60,13 @@ public class RulesBased3 extends Player {
         } else if (move3 != 11) {
             System.out.println("GET THREE");
             return move3;
-        } else if (opMove3 != 11) {
-            System.out.println("BLOCK THREE");
-            return opMove3;
         } else if (move2 != 11) {
             System.out.println("GET TWO");
             return move2;
-        } else if (opMove2 != 11) {
+        } else if (opMove3 != 11) {
+            System.out.println("BLOCK THREE");
+            return opMove3;
+        }  else if (opMove2 != 11) {
             System.out.println("BLOCK TWO");
             return opMove2;
         } else {
@@ -90,8 +90,8 @@ public class RulesBased3 extends Player {
         return counters < 2;
     }
 
-    public Counter findOpponentCounter() {
-        if (getCounter().equals(Counter.X)) {
+    public static Counter findOpponentCounter(Counter counter) {
+        if (counter.equals(Counter.X)) {
             return Counter.O;
         } else {
             return Counter.X;
