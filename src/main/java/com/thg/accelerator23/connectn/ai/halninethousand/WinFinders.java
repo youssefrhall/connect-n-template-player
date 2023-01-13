@@ -4,9 +4,6 @@ import com.thehutgroup.accelerator.connectn.player.Counter;
 
 public class WinFinders {
 
-    private int turn;
-
-
     public static boolean horizontalWin(Arena arena, Counter counter, int column, int[] moveHeight, int count) {
         for(int offset = 0; offset < 4; offset++) {
             if (column - offset >= 0 && column - offset + 3 < 10) {
@@ -26,7 +23,7 @@ public class WinFinders {
 //                System.out.println("counterCount " + counterCount);
 //                System.out.println("opponentCounterCount " + opponentCounterCount);
                 if (counterCount >= count && opponentCounterCount == 0) {
-                    System.out.println("horizonal move");
+                    System.out.println("HORIZONTAL " + count);
                     return true;
                 }
             }
@@ -43,12 +40,12 @@ public class WinFinders {
 //            System.out.println(arena.getPlayableHeight()[column] >= count - 1);
             int counterCount = 0;
             for (int i = 0; i > -count; i--) {
-//                System.out.println("x:" + column + " y:" + (moveHeight[column] + i) + " Counter:" +arena.getCounter(column, moveHeight[column] + i));
+                System.out.println("x:" + column + " y:" + (moveHeight[column] + i) + " Counter:" +arena.getCounter(column, moveHeight[column] + i));
                 if (arena.getCounter(column, moveHeight[column] + i) == counter) {
                     counterCount += 1;
 //                    System.out.println(counterCount);
                     if (counterCount >= count) {
-                        System.out.println("vertical move");
+                        System.out.println("VERTICAL " + count);
                         return true;
                     }
 
