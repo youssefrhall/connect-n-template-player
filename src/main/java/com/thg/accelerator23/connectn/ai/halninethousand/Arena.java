@@ -11,6 +11,11 @@ public class Arena {
     private GameConfig config;
     private int[] playableHeight;
 
+    Counter opponentCounter;
+
+    public Counter getOpponentCounter() {
+        return opponentCounter;
+    }
 
     Arena(Board board){
         this.config = board.getConfig();
@@ -34,6 +39,7 @@ public class Arena {
             topCounterCheck(board, column, height+1);
         }
     }
+
 
     public int[] getPlayableHeight() {
         return playableHeight;

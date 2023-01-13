@@ -5,6 +5,8 @@ import com.thehutgroup.accelerator.connectn.player.Counter;
 import com.thehutgroup.accelerator.connectn.player.Player;
 import com.thehutgroup.accelerator.connectn.player.Position;
 
+import java.awt.geom.Area;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
@@ -14,6 +16,12 @@ public class RulesBased3 extends Player {
     Arena arena;
 
     Counter counter;
+
+//    Counter opponentCounter;
+//
+//    public Counter getOpponentCounter() {
+//        return opponentCounter;
+//    }
 
     Counter opponentCounter;
 
@@ -42,9 +50,10 @@ public class RulesBased3 extends Player {
             System.out.println("new arena");
             arena = new Arena(board);
             counter = getCounter();
-            opponentCounter = findOpponentCounter();
+            opponentCounter = findOpponentCounter(counter);
             moveReturner = new MoveReturner(arena, counter, opponentCounter);
         }
+        System.out.println(Arrays.toString(arena.getPlayableHeight()));
         arena.arenaUpdater(board);
         return moveReturner.findMove(board);
 
@@ -62,8 +71,8 @@ public class RulesBased3 extends Player {
         return counters < 2;
     }
 
-    public Counter findOpponentCounter() {
-        if (getCounter().equals(Counter.X)) {
+    public static Counter findOpponentCounter(Counter counter) {
+        if (counter.equals(Counter.X)) {
             return Counter.O;
         } else {
             return Counter.X;
