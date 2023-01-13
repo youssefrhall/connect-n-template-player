@@ -4,6 +4,8 @@ import com.thehutgroup.accelerator.connectn.player.Counter;
 import com.thehutgroup.accelerator.connectn.player.Position;
 import com.thg.accelerator23.connectn.ai.halninethousand.MiniMax.MiniMax;
 
+import java.util.Arrays;
+
 
 public class MoveReturner {
     Arena arena;
@@ -33,8 +35,7 @@ public class MoveReturner {
         }
         else{
             MiniMax miniMax = new MiniMax(counter);
-            int finalValue =  miniMax.miniMaxWithAlphaBetaPruning(board,0,true,-1000,1000);
-            return finalValue;
+            return miniMax.miniMaxWithAlphaBetaPruning(board,0,true,-1000,1000);
         }
     }
 
@@ -47,9 +48,10 @@ public class MoveReturner {
                     if (WinFinders.horizontalWin(arena, counter, column, moveHeight) || WinFinders.verticalWin(arena, counter, column, moveHeight) || WinFinders.diagonalDownWin(arena, counter, column, moveHeight) || WinFinders.diagonalUpWin(arena, counter, column, moveHeight)) {
                         arena.setCounter(column, moveHeight[column], null);
                         return column;
-                    }}
+                    }
+                }
+                arena.setCounter(column, moveHeight[column], null);
             }
-            arena.setCounter(column, moveHeight[column], null);
         }
         return 11;
     }

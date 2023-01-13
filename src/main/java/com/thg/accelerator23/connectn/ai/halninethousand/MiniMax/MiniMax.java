@@ -9,7 +9,7 @@ public class MiniMax {
     }
     public int miniMaxWithAlphaBetaPruning(Board board, int depth, boolean maximizingPlayer, int alpha, int beta) {
         BoardAnalyser boardAnalyser = new BoardAnalyser(new GameConfig(10,8,4));
-        if(depth == 10 || boardAnalyser.calculateGameState(board).isEnd()){
+        if(depth == 8 || boardAnalyser.calculateGameState(board).isEnd()){
             return evaluateBoard(boardAnalyser,board);
         }
         int bestMove = -1;
