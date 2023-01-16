@@ -17,28 +17,69 @@ public class Arena {
         return opponentCounter;
     }
 
-    Arena(Board board){
+    Arena(Board board) {
         this.config = board.getConfig();
         this.counterPositions = new Counter[board.getConfig().getWidth()][board.getConfig().getHeight()];
         this.playableHeight = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     }
 
-    public void arenaUpdater(Board board){
+    //    public void arenaUpdater(Board board){
+//        int width = board.getConfig().getWidth();
+//        int height = board.getConfig().getHeight();
+//        for (int column = 0; column < width; column++){
+//            if (board.hasCounterAtPosition(new Position(column, playableHeight[column]))&& this.counterPositions[column][playableHeight[column]] == null ) {
+//                topCounterCheck(board,column,playableHeight[column]);
+//            }
+//        }
+//    }
+    public void arenaUpdater(Board board) {
         int width = board.getConfig().getWidth();
         int height = board.getConfig().getHeight();
-        for (int column = 0; column < width; column++){
-            if (board.hasCounterAtPosition(new Position(column, playableHeight[column]))&& this.counterPositions[column][playableHeight[column]] == null ) {
-                topCounterCheck(board,column,playableHeight[column]);
+        for (int i = 0; i < width; i++) {
+            for (int j = 0; j < height; j++) {
+                Position position = new Position(i, j);
+                if (board.hasCounterAtPosition(position)) {
+                    this.counterPositions[i][j] = board.getCounterAtPosition(position);
+                } else {
+                    this.playableHeight[i] = j;
+                    break;
+                }
             }
         }
     }
-    private void topCounterCheck(Board board, int column, int height){
-        this.counterPositions[column][playableHeight[column]] = board.getCounterAtPosition(new Position(column, playableHeight[column]));
-        this.playableHeight[column] += 1;
-        if (board.hasCounterAtPosition(new Position(column, height +1))){
-            topCounterCheck(board, column, height+1);
+
+    public void printArena(){
+        for(int i = this.config.getHeight() - 1; i > -1 ; i--) {
+            System.out.println();
+            for(int j = 0; j < this.config.getWidth(); j++) {
+                if (this.counterPositions[j][i] == Counter.X) {
+                    System.out.print("X");
+                } else if (this.counterPositions[j][i] == Counter.O) {
+                    System.out.print("O");
+                } else {
+                    System.out.print("_");
+                }
+            }
         }
+        System.out.println();
     }
+
+//    public void setPlayableHeight() {
+//        int[] heights = new int[9];
+//        for(int i = 0; i < this.config.getWidth(); i++) {
+//            for(int j = 0; j < this.config.getHeight(); j++) {
+//                if(this.counterPositions[i][j])
+//            }
+//        }
+//    }
+
+//    private void topCounterCheck(Board board, int column, int height) {
+//        this.counterPositions[column][playableHeight[column]] = board.getCounterAtPosition(new Position(column, playableHeight[column]));
+//        this.playableHeight[column] += 1;
+//        if (board.hasCounterAtPosition(new Position(column, height + 1))) {
+//            topCounterCheck(board, column, height + 1);
+//        }
+//    }
 
 
     public int[] getPlayableHeight() {
@@ -50,7 +91,7 @@ public class Arena {
     }
 
     public void setCounter(int x, int y, Counter counter) {
-       counterPositions[x][y] = counter;
+        counterPositions[x][y] = counter;
     }
 
     public Counter[][] getCounterPositions() {

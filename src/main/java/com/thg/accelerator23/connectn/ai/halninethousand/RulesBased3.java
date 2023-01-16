@@ -47,8 +47,9 @@ public class RulesBased3 extends Player {
             opponentCounter = findOpponentCounter(counter);
 //            moveReturner = new MoveReturner(arena, counter, opponentCounter);
         }
-        System.out.println(Arrays.toString(arena.getPlayableHeight()));
         arena.arenaUpdater(board);
+//        arena.printArena();
+        System.out.println(Arrays.toString(arena.getPlayableHeight()));
 //        return moveReturner.findMove(board);
         return MoveReturner.findMove(board, this);
 

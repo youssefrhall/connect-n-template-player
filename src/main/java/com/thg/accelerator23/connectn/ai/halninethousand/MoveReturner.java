@@ -11,56 +11,69 @@ import java.util.Random;
 
 public class MoveReturner {
 
-    public static int findMove(Board board, RulesBased3 rulesBased3){
-        if(rulesBased3.arena.getCounter(4,0) == null){
+    public static int findMove(Board board, RulesBased3 rulesBased3) {
+        if (rulesBased3.arena.getCounter(4, 0) == null) {
             return 4;
         }
 
-        int move = winFinder(rulesBased3.arena, rulesBased3.getCounter(), 4 );
-        if (move != 11){
-            return move;
-        }
-        else{
-            move = winFinder(rulesBased3.arena, rulesBased3.getOpponentCounter(), 4);
-        }
-        if (move != 11){
-            return move;
-        }
-        else{
-            move = winFinder(rulesBased3.arena, rulesBased3.getCounter(), 3);
-        }
-        if (move != 11){
-            return move;
-        }
-        else{
-            move = winFinder(rulesBased3.arena, rulesBased3.getOpponentCounter(), 3);
-        }
-        if (move != 11){
-            return move;
-        }
-        else{
+        int four = winFinder(rulesBased3.arena, rulesBased3.getCounter(), 4);
+        int opFour = winFinder(rulesBased3.arena, rulesBased3.getOpponentCounter(), 4);
+        int three = winFinder(rulesBased3.arena, rulesBased3.getCounter(), 3);
+        if (four != 11) {
+            System.out.println("GET 4");
+            return four;
+        } else if (opFour != 11) {
+            System.out.println("BLOCK 4");
+            return opFour;
+        } else if (three != 11) {
+            System.out.println("GET 3");
+            return three;
+        } else {
             MiniMax miniMax = new MiniMax(rulesBased3.getCounter());
-            System.out.println(board.hasCounterAtPosition(new Position(4,0)));
-            int finalvalue =  miniMax.miniMaxWithAlphaBetaPruning(board,0,true,-1000,1000);
+            int finalvalue = miniMax.miniMaxWithAlphaBetaPruning(board, 0, true, -1000, 1000);
             System.out.println(finalvalue);
             return finalvalue;
         }
     }
 
-    private static int winFinder(Arena arena, Counter counter, int numCounters) {
-        int[] moveHeight = arena.getPlayableHeight();
+    public static int[] getNextPlayableHeight(Arena arena) {
+        int[] next = new int[10];
+        for (int i = 0; i < arena.getConfig().getWidth(); i++) {
+            next[i] = arena.getPlayableHeight()[i] + 1;
+        }
+        return next;
+    }
+
+    public static List<Integer> runWinFinders(Arena arena, Counter counter, int numCounters, int[] moveHeight) {
+        List<Integer> columns = new ArrayList<>();
         for (int column = 0; column < 10; column++) {
-            if(moveHeight[column] < 8) {
+            if (moveHeight[column] < 8) {
                 arena.setCounter(column, moveHeight[column], counter);
-                if (moveHeight[column] < 7){
+                if (moveHeight[column] < 7) {
                     if (WinFinders.horizontalWin(arena, counter, column, moveHeight, numCounters) || WinFinders.verticalWin(arena, counter, column, moveHeight, numCounters) || WinFinders.diagonalDownWin(arena, counter, column, moveHeight) || WinFinders.diagonalUpWin(arena, counter, column, moveHeight)) {
                         arena.setCounter(column, moveHeight[column], null);
-                        return column;
-                    }}
+                        columns.add(column);
+                    }
+                }
             }
             arena.setCounter(column, moveHeight[column], null);
         }
-        ;
+        return columns;
+    }
+
+
+    private static int winFinder(Arena arena, Counter counter, int numCounters) {
+        int[] moveHeight = arena.getPlayableHeight();
+        int[] nextMoveHeight = getNextPlayableHeight(arena);
+
+        List<Integer> validMoves = runWinFinders(arena, counter, numCounters, moveHeight);
+        List<Integer> helpsOpponent = runWinFinders(arena, counter, numCounters, nextMoveHeight);
+        System.out.println(validMoves + " validMoves");
+        System.out.println(helpsOpponent + " helpsOpponent");
+        validMoves.removeAll(helpsOpponent);
+        if (!validMoves.isEmpty()) {
+            return validMoves.get(0);
+        }
         return 11;
     }
 
@@ -86,10 +99,10 @@ public class MoveReturner {
 //        return emptyColumns.get(rand.nextInt(emptyColumns.size()));
 //    }
 
-    public List<Integer> fullColumnChecker(RulesBased3 rulesBased3){
+    public List<Integer> fullColumnChecker(RulesBased3 rulesBased3) {
         List<Integer> emptyColumns = new ArrayList<>();
-        for (int column = 0; column < rulesBased3.arena.getConfig().getWidth(); column++){
-            if(rulesBased3.arena.getCounter(column, rulesBased3.arena.getConfig().getHeight()-1) == null){
+        for (int column = 0; column < rulesBased3.arena.getConfig().getWidth(); column++) {
+            if (rulesBased3.arena.getCounter(column, rulesBased3.arena.getConfig().getHeight() - 1) == null) {
                 emptyColumns.add(column);
             }
         }

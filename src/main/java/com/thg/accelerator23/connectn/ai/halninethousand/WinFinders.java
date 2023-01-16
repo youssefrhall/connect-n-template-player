@@ -1,13 +1,18 @@
 package com.thg.accelerator23.connectn.ai.halninethousand;
 
 import com.thehutgroup.accelerator.connectn.player.Counter;
+import com.thehutgroup.accelerator.connectn.player.Position;
+
+import java.util.List;
 
 public class WinFinders {
+
+
 
     public static boolean horizontalWin(Arena arena, Counter counter, int column, int[] moveHeight, int count) {
         for(int offset = 0; offset < 4; offset++) {
             if (column - offset >= 0 && column - offset + 3 < 10) {
-//                System.out.println();
+                System.out.println();
 //                System.out.println("count " + count);
                 int counterCount = 0;
                 int opponentCounterCount = 0;
@@ -37,10 +42,10 @@ public class WinFinders {
 //        System.out.println(arena.getPlayableHeight()[column] + " arena.getPlayableHeight()[column]");
 //        System.out.println(count + " count");
         if (arena.getPlayableHeight()[column] + 1 >= count) {
-//            System.out.println(arena.getPlayableHeight()[column] >= count - 1);
+            System.out.println(arena.getPlayableHeight()[column] >= count - 1);
             int counterCount = 0;
             for (int i = 0; i > -count; i--) {
-                System.out.println("x:" + column + " y:" + (moveHeight[column] + i) + " Counter:" +arena.getCounter(column, moveHeight[column] + i));
+//                System.out.println("x:" + column + " y:" + (moveHeight[column] + i) + " Counter:" +arena.getCounter(column, moveHeight[column] + i));
                 if (arena.getCounter(column, moveHeight[column] + i) == counter) {
                     counterCount += 1;
 //                    System.out.println(counterCount);
