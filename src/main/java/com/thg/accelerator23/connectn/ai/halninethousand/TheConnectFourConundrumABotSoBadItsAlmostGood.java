@@ -5,7 +5,7 @@ import com.thehutgroup.accelerator.connectn.player.Counter;
 import com.thehutgroup.accelerator.connectn.player.Player;
 
 
-public class RulesBased3 extends Player {
+public class TheConnectFourConundrumABotSoBadItsAlmostGood extends Player {
 
     Arena arena;
 
@@ -17,9 +17,9 @@ public class RulesBased3 extends Player {
 
     Boolean isStart = true;
 
-    public RulesBased3(Counter counter) {
+    public TheConnectFourConundrumABotSoBadItsAlmostGood(Counter counter) {
         //TODO: fill in your name here
-        super(counter, RulesBased3.class.getName());
+        super(counter, TheConnectFourConundrumABotSoBadItsAlmostGood.class.getName());
     }
 
 //    //TODO: fill in your name here

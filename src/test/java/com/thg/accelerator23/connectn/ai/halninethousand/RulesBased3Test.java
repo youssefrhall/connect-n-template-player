@@ -9,7 +9,7 @@ class RulesBased3Test {
 
     @Test
     void findOpponentCounterTest(){
-        RulesBased3 rulesBased3 = new RulesBased3(Counter.X);
+        TheConnectFourConundrumABotSoBadItsAlmostGood rulesBased3 = new TheConnectFourConundrumABotSoBadItsAlmostGood(Counter.X);
         Counter solution = rulesBased3.findOpponentCounter();
         assertEquals(Counter.O, solution);
 

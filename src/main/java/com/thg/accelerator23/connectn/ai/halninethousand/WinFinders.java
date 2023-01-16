@@ -1,5 +1,4 @@
 package com.thg.accelerator23.connectn.ai.halninethousand;
-
 import com.thehutgroup.accelerator.connectn.player.Counter;
 
 public class WinFinders {
@@ -41,7 +40,7 @@ public class WinFinders {
 
     public static boolean diagonalUpWin(Arena arena, Counter counter, int column, int[] moveHeight) {
         for (int offset = 0; offset <= 3; offset++) {
-            if (arena.getPlayableHeight()[column] < 7+offset && column - offset >= 0 && column - offset + 3 < 10 && moveHeight[column] - offset >= 0 && moveHeight[column] - offset < 10) {
+            if (arena.getPlayableHeight()[column] < 7+offset && column - offset >= 0 && column - offset + 3 < 10 && moveHeight[column] - offset >= 0 && moveHeight[column] - offset < 5) {
                 if (arena.getCounter(column - offset, moveHeight[column] - offset) == counter && arena.getCounter(column + 1 - offset, moveHeight[column] + 1 - offset) == counter && arena.getCounter(column + 2 - offset, moveHeight[column] + 2 - offset) == counter && arena.getCounter(column + 3 - offset, moveHeight[column] + 3 - offset) == counter) {
                     return true;
                 }
