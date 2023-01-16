@@ -40,7 +40,7 @@ public class WinFinders {
 //            System.out.println(arena.getPlayableHeight()[column] >= count - 1);
             int counterCount = 0;
             for (int i = 0; i > -count; i--) {
-                System.out.println("x:" + column + " y:" + (moveHeight[column] + i) + " Counter:" +arena.getCounter(column, moveHeight[column] + i));
+//                System.out.println("x:" + column + " y:" + (moveHeight[column] + i) + " Counter:" +arena.getCounter(column, moveHeight[column] + i));
                 if (arena.getCounter(column, moveHeight[column] + i) == counter) {
                     counterCount += 1;
 //                    System.out.println(counterCount);
